@@ -1,0 +1,43 @@
+{
+    "x":0,
+    "type":"Scene",
+    "selectedBox":2,
+    "selecteID":9,
+    "searchKey":"Scene",
+    "props":{"width":720,"sceneColor":"#000000","height":1280},
+    "nodeParent":-1,
+    "maxID":11,
+    "label":"Scene",
+    "isOpen":true,
+    "isDirectory":true,
+    "isAniNode":true,
+    "hasChild":true,
+    "compId":2,
+    "child":[
+        {
+            "x":15,
+            "type":"Script",
+            "switchAble":true,
+            "source":"src/game/init/Launcher.ts",
+            "searchKey":"Script,Launcher",
+            "removeAble":true,
+            "props":{"version":"1.0.0","net base url":"https://xyx.kuaiyugo.com/node3/t1/public/p2"},
+            "nodeParent":2,
+            "label":"Launcher",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":10,
+            "child":[
+                ]
+        }],
+    "animations":[
+        {
+            "nodes":[
+                ],
+            "name":"ani1",
+            "id":1,
+            "frameRate":24,
+            "action":0
+        }]
+}

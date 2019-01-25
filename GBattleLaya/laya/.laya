@@ -27,7 +27,7 @@ import Scene=Laya.Scene;]]>   </codeImportsTS>
    <picHeight>512   </picHeight>
    <power2>false   </power2>
    <trimempty>false   </trimempty>
-   <startScene/>
+   <startScene>Game/init/Launcher.scene   </startScene>
    <engineType>2D   </engineType>
    <scaleMode>fixedwidth   </scaleMode>
    <screenMode>none   </screenMode>
