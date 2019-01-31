@@ -66,6 +66,12 @@
 										"clipPath":"Assets/Stylized Astronaut/Character/Astronaut-Run.lani"
 									}
 								]
+							},
+							{
+								"name":"New Layer",
+								"weight":0,
+								"blendingMode":0,
+								"states":[]
 							}
 						],
 						"cullingMode":0,
@@ -132,50 +138,6 @@
 								}
 							],
 							"meshPath":"Assets/Stylized Astronaut/Character/Astronaut-Player.lm"
-						},
-						"components":[],
-						"child":[]
-					},
-					{
-						"type":"Camera",
-						"props":{
-							"name":"Player_Camera",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0.001600006,
-								0.153,
-								-0.426
-							],
-							"rotation":[
-								0,
-								1,
-								0,
-								0
-							],
-							"scale":[
-								0.1,
-								0.1,
-								0.1
-							],
-							"clearFlag":1,
-							"orthographic":false,
-							"fieldOfView":60,
-							"nearPlane":0.3,
-							"farPlane":1000,
-							"viewport":[
-								0,
-								0,
-								1,
-								1
-							],
-							"clearColor":[
-								0.1921569,
-								0.3019608,
-								0.4745098,
-								0
-							]
 						},
 						"components":[],
 						"child":[]
@@ -263,6 +225,50 @@
 						"isTrigger":false
 					}
 				],
+				"child":[]
+			},
+			{
+				"type":"Camera",
+				"props":{
+					"name":"Main Camera",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-1.8893,
+						2.2,
+						-2.890822
+					],
+					"rotation":[
+						0,
+						1,
+						0,
+						0
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"clearFlag":1,
+					"orthographic":false,
+					"fieldOfView":60,
+					"nearPlane":0.3,
+					"farPlane":1000,
+					"viewport":[
+						0,
+						0,
+						1,
+						1
+					],
+					"clearColor":[
+						0.1921569,
+						0.3019608,
+						0.4745098,
+						0
+					]
+				},
+				"components":[],
 				"child":[]
 			}
 		]

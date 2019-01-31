@@ -2,7 +2,7 @@
 <LayaExportSetting>
   <config>1</config>
   <config1>
-    <FirstlevelMenu>0</FirstlevelMenu>
+    <FirstlevelMenu>1</FirstlevelMenu>
     <MeshSetting>True</MeshSetting>
     <IgnoreVerticesUV>False</IgnoreVerticesUV>
     <IgnoreVerticesNormal>False</IgnoreVerticesNormal>
@@ -34,7 +34,7 @@
     <Android>False</Android>
     <Conventional>True</Conventional>
     <SavePath>H:/Program/projects/Game/GBattle/GBattleLaya/laya/assets/u3d</SavePath>
-    <ScrollPositionY>0</ScrollPositionY>
+    <ScrollPositionY>116</ScrollPositionY>
   </config1>
   <config2>
     <FirstlevelMenu>0</FirstlevelMenu>

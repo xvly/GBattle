@@ -29,6 +29,5 @@ export default class LoginView extends BaseView{
     }
 
     onClickStart(){
-        this.doClose();
     }
 }

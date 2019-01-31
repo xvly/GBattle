@@ -1,6 +1,6 @@
 import BaseView, { ViewEffect } from "../../LayaCommon/frame/mvc/BaseView";
 import XHTiger from "../../LayaCommon/sdk/XHTiger";
-    
+
 export default class LoadingView extends BaseView{
 
     private progressValue:number;
@@ -14,12 +14,13 @@ export default class LoadingView extends BaseView{
 
     private adInfo:{posId:string, creativeId:number};
 
-    protected onLoad(){
+    public onAwake(){
+        
         this.imgRGBG.on(Laya.Event.CLICK, this, this.onClickFirstScreenAD);
         this.btnSkip.on(Laya.Event.CLICK, this, this.onClickSkip);
     }
 
-    public onOpened(){
+    public onEnable(){
         this.progressValue = 0;
         this.progressTargetValue = -1;
 
@@ -55,7 +56,7 @@ export default class LoadingView extends BaseView{
      */
     private onClickSkip(){
         // Laya.timer.once(100, this, this.doClose);
-        this.doClose();
+        this.close();
     }
 
     /**
@@ -96,7 +97,7 @@ export default class LoadingView extends BaseView{
         if (this.progressValue >= 100)
         {
             this.progressTargetValue = -1;
-            this.doClose(ViewEffect.Alpha);
+            this.close(null, ViewEffect.Alpha);
             return;
         }
 

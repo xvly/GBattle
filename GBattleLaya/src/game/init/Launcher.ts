@@ -10,6 +10,7 @@ import { AppInfo } from "../common/CommonPlatform";
 import { ServerConfig } from "../common/CommonServer";
 import DB, { DBType } from "../../LayaCommon/db/DB";
 import ConfigManager from "../manager/ConfigManager";
+import Resource from "../../LayaCommon/resource/Resource";
 
 export default class Launcher extends Laya.Script{
     onAwake():void{
@@ -32,6 +33,11 @@ export default class Launcher extends Laya.Script{
         GlobalEvent.event(GlobalEventType.appStart);
         
         // 打开加载界面
+        // await Resource.load("ui.game.init.testUI");
+        
+        // let testUI = await Resource.load("game/init/test.efc")
+        // console.log("!! test ui")
+
         await ModuleManager.loading.show();
         // XHSdk.sendLoadingLog("progressStart");
 
@@ -55,7 +61,7 @@ export default class Launcher extends Laya.Script{
         // }
 
         // 显示初始场景
-        // await ModuleManager.fight.show();
+        await ModuleManager.fight.show();
 
         //
         GlobalEvent.event(GlobalEventType.gameStart);

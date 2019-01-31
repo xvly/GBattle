@@ -12,7 +12,7 @@ export default class ConfigManager{
             maxCount:number}};
 
     public static async setup(){
-        this.item = await Resource.load("config/Item.json", null, null, Laya.Loader.JSON);
+        // this.item = await Resource.load("config/Item.json", null, null, Laya.Loader.JSON);
         // this.global = await Resource.load("config/Global.json");
         // this.data = await Resource.load("config/Data.json");
         // this.balks = await Resource.load("config/Blaks.json");
