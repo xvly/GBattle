@@ -1,0 +1,7 @@
+<page>
+   <item name="game/fight/Fight.scene" props="" ifExport="默认" aName=""/>
+   <item name="game/common/Modal.scene" props="" ifExport="Default" aName=""/>
+   <item name="game/task/TaskView.scene" props="" ifExport="Default" aName=""/>
+   <item name="game/match/RTMatchView.scene" props="" ifExport="File Mode" aName=""/>
+   <item name="game/match/TeamView.scene" props="" ifExport="File Mode" aName=""/>
+</page>
