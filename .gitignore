@@ -1,7 +1,4 @@
-GBattleLaya/.laya
-GBattleLaya/bin/game
-GBattleLaya/bin/js
-GBattleLaya/bin/res
-GBattleLaya/bin/u3d
-GBattleUnity/Library
-GBattleUnity/Temp
+laya/.laya/chrome
+laya/laya/bin/js
+laya/bin/res
+laya/bin/u3d

@@ -1,4 +1,4 @@
-// v1.2.0
+// v1.0.2
 //是否使用IDE自带的node环境和插件，设置false后，则使用自己环境(使用命令行方式执行)
 const useIDENode = process.argv[0].indexOf("LayaAir") > -1 ? true : false;
 //获取Node插件和工作路径
@@ -23,7 +23,7 @@ global.workSpaceDir = workSpaceDir;
 
 // 结合compile.js使用
 global.publish = true;
-const fileList = ["compile.js", "publish_xmgame.js", "publish_oppogame.js"];
+const fileList = ["compile.js"];
 requireDir('./', {
 	filter: function (fullPath) {
 		// 只用到了compile.js和publish.js
@@ -87,16 +87,6 @@ gulp.task("loadConfig", function () {
 gulp.task("clearReleaseDir", ["compile"], function (cb) {
 	if (config.clearReleaseDir) {
 		let delList = [releaseDir, releaseDir + "_pack", config.packfileTargetValue];
-		// 小米快游戏，使用即存的项目，删掉Laya工程文件，保留小米环境项目文件
-		if (platform === "xmgame") {
-			let xmProjSrc = path.join(releaseDir, config.xmInfo.projName);
-			// 不要删掉manifest.json/main.js文件
-			// 这里不是node-glob语法，详见: https://github.com/sindresorhus/del
-			delList = [`${xmProjSrc}/**`, `!${xmProjSrc}`, `!${xmProjSrc}/node_modules/**`, `!${xmProjSrc}/sign/**`, `!${xmProjSrc}/{babel.config.js,main.js,manifest.json,package.json,package-lock.json}`];
-		} else if (platform === "oppogame") {
-			let oppoProjSrc = path.join(releaseDir, config.oppoInfo.projName);
-			delList = [`${oppoProjSrc}/**`, `!${oppoProjSrc}`, `!${oppoProjSrc}/dist/**`, `!${oppoProjSrc}/{manifest.json}`];
-		}
 		del(delList, { force: true }).then(paths => {
 			cb();
 		});
@@ -119,13 +109,8 @@ gulp.task("copyFile", ["clearReleaseDir"], function () {
 		config.copyFilesFilter = baseCopyFilter.concat([`!${workSpaceDir}/bin/index.html`, `!${workSpaceDir}/bin/{project.swan.json,swan-game-adapter.js}`]);
 	} else if (platform === "bdgame") { // 百度项目，不拷贝index.html，不拷贝微信bin目录中的文件
 		config.copyFilesFilter = baseCopyFilter.concat([`!${workSpaceDir}/bin/index.html`, `!${workSpaceDir}/bin/{project.config.json,weapp-adapter.js}`]);
-	} else { // web|QQ项目|小米快游戏，不拷贝微信、百度在bin目录中的文件
+	} else { // web|QQ项目，不拷贝微信、百度在bin目录中的文件
 		config.copyFilesFilter = baseCopyFilter.concat([`!${workSpaceDir}/bin/{game.js,game.json,project.config.json,weapp-adapter.js,project.swan.json,swan-game-adapter.js}`]);
-	}
-	// 小米快游戏，需要新建一个快游戏项目，拷贝的只是项目的一部分，将文件先拷贝到文件夹的临时目录中去
-	let QUICKGAMELIST = ["xmgame", "oppogame"];
-	if (QUICKGAMELIST.includes(platform)) {
-		releaseDir = global.tempReleaseDir = path.join(releaseDir, "temprelease");
 	}
 	global.releaseDir = releaseDir;
 	var stream = gulp.src(config.copyFilesFilter, { base: `${workSpaceDir}/bin` });
@@ -291,7 +276,7 @@ BK.Script.loadlib("GameRes://index.js");`;
 // 压缩json
 gulp.task("compressJson", ["modifyFile"], function () {
 	if (config.compressJson) {
-		return gulp.src(config.compressJsonFilter, { base: releaseDir })
+		return gulp.src(config.compressJsonFilter)
 			.pipe(jsonminify())
 			.pipe(gulp.dest(releaseDir));
 	}
@@ -300,7 +285,7 @@ gulp.task("compressJson", ["modifyFile"], function () {
 // 压缩js
 gulp.task("compressJs", ["compressJson"], function () {
 	if (config.compressJs) {
-		return gulp.src(config.compressJsFilter, { base: releaseDir })
+		return gulp.src(config.compressJsFilter)
 			.pipe(uglify())
 			.on('error', function (err) {
 				console.warn(err.toString());
@@ -312,7 +297,7 @@ gulp.task("compressJs", ["compressJson"], function () {
 // 压缩png，jpg
 gulp.task("compressImage", ["compressJs"], function () {
 	if (config.compressImage) {
-		return gulp.src(config.compressImageFilter, { base: releaseDir })
+		return gulp.src(config.compressImageFilter)
 			.pipe(image({
 				pngquant: true,			//PNG优化工具
 				optipng: false,			//PNG优化工具
@@ -368,7 +353,7 @@ function readFile(path) {
 // 生成版本管理信息
 gulp.task("version1", ["openData"], function () {
 	if (config.version) {
-		return gulp.src(config.versionFilter, { base: releaseDir })
+		return gulp.src(config.versionFilter)
 			.pipe(rev())
 			.pipe(gulp.dest(releaseDir))
 			.pipe(revdel())
@@ -430,6 +415,6 @@ gulp.task("packfile", ["version2"], function() {
 });
 
 // 起始任务
-gulp.task("publish", ["buildXiaomiProj", "buildOPPOProj"], function () {
+gulp.task("publish", ["packfile"], function () {
 	console.log("All tasks completed!");
 });

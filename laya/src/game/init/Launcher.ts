@@ -1,4 +1,5 @@
 import GlobalEvent, { GlobalEventType } from "../../LayaCommon/utils/GlobalEvent";
+import ViewManager from "../../LayaCommon/view/ViewManager";
 
 export default class Launcher extends Laya.Script {
     onAwake(): void {
@@ -14,6 +15,8 @@ export default class Launcher extends Laya.Script {
 
         // appstart event
         GlobalEvent.event(GlobalEventType.appStart);
+
+        // ViewManager.show()
 
         // remote url
         // Laya.URL.rootPath = "https://cdn.kuaiyugo.com/xyx/t1/TankIO/";
